@@ -1,17 +1,23 @@
-import { forwardRef, useRef, useEffect } from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
-import Table from '@material-ui/core/Table';
-import PropTypes from 'prop-types';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
-import { useGlobalFilter, usePagination, useRowSelect, useSortBy, useTable } from 'react-table';
-import clsx from 'clsx';
-import ContactsTablePaginationActions from './ContactsTablePaginationActions';
+import { forwardRef, useRef, useEffect } from "react";
+import Checkbox from "@material-ui/core/Checkbox";
+import Table from "@material-ui/core/Table";
+import PropTypes from "prop-types";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TablePagination from "@material-ui/core/TablePagination";
+import TableRow from "@material-ui/core/TableRow";
+import TableSortLabel from "@material-ui/core/TableSortLabel";
+import {
+  useGlobalFilter,
+  usePagination,
+  useRowSelect,
+  useSortBy,
+  useTable,
+} from "react-table";
+import clsx from "clsx";
+import ContactsTablePaginationActions from "./ContactsTablePaginationActions";
 
 const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
   const defaultRef = useRef();
@@ -51,7 +57,7 @@ const EnhancedTable = ({ columns, data, onRowClick }) => {
       hooks.allColumns.push((_columns) => [
         // Let's make a column for selection
         {
-          id: 'selection',
+          id: "selection",
           sortable: false,
           // The header can use the table's getToggleAllRowsSelectedProps method
           // to render a checkbox.  Pagination is a problem since this will select all
@@ -103,12 +109,12 @@ const EnhancedTable = ({ columns, data, onRowClick }) => {
                       ? column.getHeaderProps()
                       : column.getHeaderProps(column.getSortByToggleProps()))}
                   >
-                    {column.render('Header')}
+                    {column.render("Header")}
                     {column.sortable ? (
                       <TableSortLabel
                         active={column.isSorted}
                         // react-table has a unsorted state which is not treated here
-                        direction={column.isSortedDesc ? 'desc' : 'asc'}
+                        direction={column.isSortedDesc ? "desc" : "asc"}
                       />
                     ) : null}
                   </TableCell>
@@ -129,9 +135,9 @@ const EnhancedTable = ({ columns, data, onRowClick }) => {
                     return (
                       <TableCell
                         {...cell.getCellProps()}
-                        className={clsx('p-4 md:p-12', cell.column.className)}
+                        className={clsx("p-4 md:p-12", cell.column.className)}
                       >
-                        {cell.render('Cell')}
+                        {cell.render("Cell")}
                       </TableCell>
                     );
                   })}
@@ -144,15 +150,20 @@ const EnhancedTable = ({ columns, data, onRowClick }) => {
       <TablePagination
         component="div"
         classes={{
-          root: 'flex-shrink-0 border-t-1',
+          root: "flex-shrink-0 border-t-1",
         }}
-        rowsPerPageOptions={[5, 10, 25, { label: 'All', value: data.length + 1 }]}
+        rowsPerPageOptions={[
+          5,
+          10,
+          25,
+          { label: "All", value: data.length + 1 },
+        ]}
         colSpan={5}
         count={data.length}
         rowsPerPage={pageSize}
         page={pageIndex}
         SelectProps={{
-          inputProps: { 'aria-label': 'rows per page' },
+          inputProps: { "aria-label": "rows per page" },
           native: false,
         }}
         onPageChange={handleChangePage}

@@ -1,6 +1,7 @@
-import { lazy } from "react";
+import { authRoles } from "app/auth";
+import Message from "./Message";
 
-const ResetPasswordPageConfig = {
+const MessageConfig = {
   settings: {
     layout: {
       config: {
@@ -22,12 +23,13 @@ const ResetPasswordPageConfig = {
       },
     },
   },
+  auth: authRoles.onlyGuest,
   routes: [
     {
-      path: "/pages/auth/reset-password",
-      component: lazy(() => import("./ResetPasswordPage")),
+      path: "/message",
+      component: Message,
     },
   ],
 };
 
-export default ResetPasswordPageConfig;
+export default MessageConfig;

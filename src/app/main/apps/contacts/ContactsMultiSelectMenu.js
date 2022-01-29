@@ -1,13 +1,17 @@
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setContactsUnstarred, setContactsStarred, removeContacts } from './store/contactsSlice';
+import Icon from "@material-ui/core/Icon";
+import IconButton from "@material-ui/core/IconButton";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import MenuList from "@material-ui/core/MenuList";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  setContactsUnstarred,
+  setContactsStarred,
+  removeContacts,
+} from "./store/contactsSlice";
 
 function ContactsMultiSelectMenu(props) {
   const dispatch = useDispatch();
@@ -27,7 +31,7 @@ function ContactsMultiSelectMenu(props) {
     <>
       <IconButton
         className="p-0"
-        aria-owns={anchorEl ? 'selectedContactsMenu' : null}
+        aria-owns={anchorEl ? "selectedContactsMenu" : null}
         aria-haspopup="true"
         onClick={openSelectedContactMenu}
       >
@@ -47,7 +51,7 @@ function ContactsMultiSelectMenu(props) {
             }}
           >
             <ListItemIcon className="min-w-40">
-              <Icon>delete</Icon>
+              <Icon>close</Icon>
             </ListItemIcon>
             <ListItemText primary="Remove" />
           </MenuItem>
@@ -58,7 +62,7 @@ function ContactsMultiSelectMenu(props) {
             }}
           >
             <ListItemIcon className="min-w-40">
-              <Icon>star</Icon>
+              <Icon>check</Icon>
             </ListItemIcon>
             <ListItemText primary="Starred" />
           </MenuItem>

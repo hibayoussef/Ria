@@ -1,41 +1,41 @@
-import FuseScrollbars from '@fuse/core/FuseScrollbars';
-import { useDebounce } from '@fuse/hooks';
-import AppBar from '@material-ui/core/AppBar';
-import Avatar from '@material-ui/core/Avatar';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import TextField from '@material-ui/core/TextField';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { Controller, useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import _ from '@lodash';
-import StatusIcon from './StatusIcon';
-import { closeUserSidebar } from './store/sidebarsSlice';
-import { updateUserData } from './store/userSlice';
+import FuseScrollbars from "@fuse/core/FuseScrollbars";
+import { useDebounce } from "@fuse/hooks";
+import AppBar from "@material-ui/core/AppBar";
+import Avatar from "@material-ui/core/Avatar";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormLabel from "@material-ui/core/FormLabel";
+import Icon from "@material-ui/core/Icon";
+import IconButton from "@material-ui/core/IconButton";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import TextField from "@material-ui/core/TextField";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import { Controller, useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import _ from "@lodash";
+import StatusIcon from "./StatusIcon";
+import { closeUserSidebar } from "./store/sidebarsSlice";
+import { updateUserData } from "./store/userSlice";
 
 const statusArr = [
   {
-    title: 'Online',
-    value: 'online',
+    title: "Online",
+    value: "online",
   },
   {
-    title: 'Away',
-    value: 'away',
+    title: "Away",
+    value: "away",
   },
   {
-    title: 'Do not disturb',
-    value: 'do-not-disturb',
+    title: "Do not disturb",
+    value: "do-not-disturb",
   },
   {
-    title: 'Offline',
-    value: 'offline',
+    title: "Offline",
+    value: "offline",
   },
 ];
 
@@ -66,13 +66,16 @@ function UserSidebar(props) {
           <Typography className="px-12" color="inherit" variant="subtitle1">
             User Info
           </Typography>
-          <IconButton onClick={() => dispatch(closeUserSidebar())} color="inherit">
+          <IconButton
+            onClick={() => dispatch(closeUserSidebar())}
+            color="inherit"
+          >
             <Icon>close</Icon>
           </IconButton>
         </Toolbar>
         <Toolbar className="flex flex-col justify-center items-center p-24">
           <Avatar src={user.avatar} alt={user.name} className="w-96 h-96">
-            {!user.avatar || user.avatar === '' ? user.name[0] : ''}
+            {!user.avatar || user.avatar === "" ? user.name[0] : ""}
           </Avatar>
           <Typography color="inherit" className="mt-16" variant="h6">
             {user.name}

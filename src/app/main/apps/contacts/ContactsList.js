@@ -1,24 +1,26 @@
-import { motion } from 'framer-motion';
-import FuseUtils from '@fuse/utils';
-import Avatar from '@material-ui/core/Avatar';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { useMemo, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import ContactsMultiSelectMenu from './ContactsMultiSelectMenu';
-import ContactsTable from './ContactsTable';
+import { motion } from "framer-motion";
+import FuseUtils from "@fuse/utils";
+import Avatar from "@material-ui/core/Avatar";
+import Icon from "@material-ui/core/Icon";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import { useMemo, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import ContactsMultiSelectMenu from "./ContactsMultiSelectMenu";
+import ContactsTable from "./ContactsTable";
 import {
   openEditContactDialog,
   removeContact,
   toggleStarredContact,
   selectContacts,
-} from './store/contactsSlice';
+} from "./store/contactsSlice";
 
 function ContactsList(props) {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  const searchText = useSelector(({ contactsApp }) => contactsApp.contacts.searchText);
+  const searchText = useSelector(
+    ({ contactsApp }) => contactsApp.contacts.searchText
+  );
   const user = useSelector(({ contactsApp }) => contactsApp.user);
 
   const [filteredData, setFilteredData] = useState(null);
@@ -35,48 +37,47 @@ function ContactsList(props) {
             )
           );
         },
-        accessor: 'avatar',
+        accessor: "avatar",
         Cell: ({ row }) => {
-          return <Avatar className="mx-8" alt={row.original.name} src={row.original.avatar} />;
+          return (
+            <Avatar
+              className="mx-8"
+              alt={row.original.name}
+              src={row.original.avatar}
+            />
+          );
         },
-        className: 'justify-center',
+        className: "justify-center",
         width: 64,
         sortable: false,
       },
       {
-        Header: 'First Name',
-        accessor: 'name',
-        className: 'font-medium',
+        Header: "First Name",
+        accessor: "name",
+        className: "font-medium",
         sortable: true,
       },
       {
-        Header: 'Last Name',
-        accessor: 'lastName',
-        className: 'font-medium',
+        Header: "Last Name",
+        accessor: "lastName",
+        className: "font-medium",
         sortable: true,
       },
       {
-        Header: 'Company',
-        accessor: 'company',
+        Header: "Email",
+        accessor: "email",
         sortable: true,
       },
       {
-        Header: 'Job Title',
-        accessor: 'jobTitle',
+        Header: "Phone Number",
+        accessor: "phone",
         sortable: true,
       },
       {
-        Header: 'Email',
-        accessor: 'email',
+        Header: "Active",
+        accessor: "phone",
         sortable: true,
-      },
-      {
-        Header: 'Phone',
-        accessor: 'phone',
-        sortable: true,
-      },
-      {
-        id: 'action',
+        id: "action",
         width: 128,
         sortable: false,
         Cell: ({ row }) => (
@@ -90,7 +91,7 @@ function ContactsList(props) {
               {user.starred && user.starred.includes(row.original.id) ? (
                 <Icon className="text-yellow-700">star</Icon>
               ) : (
-                <Icon>star_border</Icon>
+                <Icon>close</Icon>
               )}
             </IconButton>
             <IconButton
@@ -99,7 +100,7 @@ function ContactsList(props) {
                 dispatch(removeContact(row.original.id));
               }}
             >
-              <Icon>delete</Icon>
+              <Icon>check</Icon>
             </IconButton>
           </div>
         ),

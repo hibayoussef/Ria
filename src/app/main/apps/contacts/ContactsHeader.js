@@ -1,18 +1,20 @@
-import Hidden from '@material-ui/core/Hidden';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import Paper from '@material-ui/core/Paper';
-import { ThemeProvider } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import { motion } from 'framer-motion';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectMainTheme } from 'app/store/fuse/settingsSlice';
-import { setContactsSearchText } from './store/contactsSlice';
+import Hidden from "@material-ui/core/Hidden";
+import Icon from "@material-ui/core/Icon";
+import IconButton from "@material-ui/core/IconButton";
+import Input from "@material-ui/core/Input";
+import Paper from "@material-ui/core/Paper";
+import { ThemeProvider } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { selectMainTheme } from "app/store/fuse/settingsSlice";
+import { setContactsSearchText } from "./store/contactsSlice";
 
 function ContactsHeader(props) {
   const dispatch = useDispatch();
-  const searchText = useSelector(({ contactsApp }) => contactsApp.contacts.searchText);
+  const searchText = useSelector(
+    ({ contactsApp }) => contactsApp.contacts.searchText
+  );
   const mainTheme = useSelector(selectMainTheme);
 
   return (
@@ -45,7 +47,7 @@ function ContactsHeader(props) {
             delay={300}
             className="hidden sm:flex text-16 md:text-24 mx-12 font-semibold"
           >
-            Contacts
+            Users
           </Typography>
         </div>
       </div>
@@ -67,7 +69,7 @@ function ContactsHeader(props) {
               fullWidth
               value={searchText}
               inputProps={{
-                'aria-label': 'Search',
+                "aria-label": "Search",
               }}
               onChange={(ev) => dispatch(setContactsSearchText(ev))}
             />
