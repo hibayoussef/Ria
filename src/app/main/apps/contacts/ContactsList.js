@@ -4,6 +4,8 @@ import Avatar from "@material-ui/core/Avatar";
 import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { useMemo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ContactsMultiSelectMenu from "./ContactsMultiSelectMenu";
@@ -28,15 +30,15 @@ function ContactsList(props) {
   const columns = useMemo(
     () => [
       {
-        Header: ({ selectedFlatRows }) => {
-          const selectedRowIds = selectedFlatRows.map((row) => row.original.id);
+        // Header: ({ selectedFlatRows }) => {
+        //   const selectedRowIds = selectedFlatRows.map((row) => row.original.id);
 
-          return (
-            selectedFlatRows.length > 0 && (
-              <ContactsMultiSelectMenu selectedContactIds={selectedRowIds} />
-            )
-          );
-        },
+        //   return (
+        //     selectedFlatRows.length > 0 && (
+        //       <ContactsMultiSelectMenu selectedContactIds={selectedRowIds} />
+        //     )
+        //   );
+        // },
         accessor: "avatar",
         Cell: ({ row }) => {
           return (
@@ -74,7 +76,7 @@ function ContactsList(props) {
         sortable: true,
       },
       {
-        Header: "Active",
+        Header: "",
         accessor: "phone",
         sortable: true,
         id: "action",
@@ -82,7 +84,19 @@ function ContactsList(props) {
         sortable: false,
         Cell: ({ row }) => (
           <div className="flex items-center">
-            <IconButton
+            <ButtonGroup
+              color="primary"
+              aria-label="outlined primary button group"
+            >
+              <Button style={{ color: "#f8f4fc", backgroundColor: "#282c3c" }}>
+                Confirmation
+              </Button>
+              <Button style={{ color: "#f8f4fc", backgroundColor: "#282c3c" }}>
+                reject
+              </Button>
+            </ButtonGroup>
+
+            {/* <IconButton
               onClick={(ev) => {
                 ev.stopPropagation();
                 dispatch(toggleStarredContact(row.original.id));
@@ -101,7 +115,7 @@ function ContactsList(props) {
               }}
             >
               <Icon>check</Icon>
-            </IconButton>
+            </IconButton> */}
           </div>
         ),
       },
@@ -144,11 +158,11 @@ function ContactsList(props) {
       <ContactsTable
         columns={columns}
         data={filteredData}
-        onRowClick={(ev, row) => {
-          if (row) {
-            dispatch(openEditContactDialog(row.original));
-          }
-        }}
+        // onRowClick={(ev, row) => {
+        //   if (row) {
+        //     dispatch(openEditContactDialog(row.original));
+        //   }
+        // }}
       />
     </motion.div>
   );

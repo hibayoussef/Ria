@@ -1,11 +1,15 @@
-import AdminRoleExampleConfig from './admin-role-example/AdminRoleExampleConfig';
-import GuestRoleExampleConfig from './only-guest-role-example/GuestRoleExampleConfig';
-import StaffRoleExampleConfig from './staff-role-example/StaffRoleExampleConfig';
+import SuperAdminRoleExampleConfig from "./super-admin-role-example/SuperAdminRoleExampleConfig";
+import AdminRoleExampleConfig from "./admin-role-example/AdminRoleExampleConfig";
+import HrManagerRoleExampleConfig from "./hr-manager-role-example/HrManagerRoleExampleConfig";
+import ManagerRoleExampleConfig from "./manager-role-example/ManagerRoleExampleConfig";
+import UserRoleExampleConfig from "./user-role-example/UserRoleExampleConfig";
 
 const authRoleExamplesConfigs = [
+  SuperAdminRoleExampleConfig,
   AdminRoleExampleConfig,
-  StaffRoleExampleConfig,
-  GuestRoleExampleConfig,
+  HrManagerRoleExampleConfig,
+  ManagerRoleExampleConfig,
+  UserRoleExampleConfig,
 ];
 
 export default authRoleExamplesConfigs;

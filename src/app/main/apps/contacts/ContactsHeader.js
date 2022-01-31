@@ -61,7 +61,6 @@ function ContactsHeader(props) {
             className="flex p-4 items-center w-full max-w-512 h-48 px-16 py-4 shadow"
           >
             <Icon color="action">search</Icon>
-
             <Input
               placeholder="Search for anything"
               className="flex flex-1 px-16"

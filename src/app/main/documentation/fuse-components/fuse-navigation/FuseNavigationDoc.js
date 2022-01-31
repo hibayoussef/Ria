@@ -1,9 +1,9 @@
-import FuseHighlight from '@fuse/core/FuseHighlight';
-import FuseUtils from '@fuse/utils';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { authRoles } from 'app/auth';
-import { useDispatch } from 'react-redux';
+import FuseHighlight from "@fuse/core/FuseHighlight";
+import FuseUtils from "@fuse/utils";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import { authRoles } from "app/auth";
+import { useDispatch } from "react-redux";
 import {
   appendNavigationItem,
   prependNavigationItem,
@@ -11,7 +11,7 @@ import {
   updateNavigationItem,
   setNavigation,
   resetNavigation,
-} from 'app/store/fuse/navigationSlice';
+} from "app/store/fuse/navigationSlice";
 
 function FuseNavigationDoc(props) {
   const dispatch = useDispatch();
@@ -23,8 +23,8 @@ function FuseNavigationDoc(props) {
       </Typography>
 
       <Typography className="mb-16" component="p">
-        <code>FuseNavigation</code> is a custom-built Fuse component that allows you to create a
-        multi-level collapsable navigation.
+        <code>FuseNavigation</code> is a custom-built Fuse component that allows
+        you to create a multi-level collapsable navigation.
       </Typography>
 
       <Typography className="mt-32 mb-8" variant="h6">
@@ -32,9 +32,10 @@ function FuseNavigationDoc(props) {
       </Typography>
 
       <Typography className="mb-16" component="p">
-        <code>FuseNavigation</code> uses an array to populate the entire navigation. It supports
-        four different navigation items; Group, Collapse, Item. and Divider. These items can be
-        mixed and matched to create unique and complex navigation layouts.
+        <code>FuseNavigation</code> uses an array to populate the entire
+        navigation. It supports four different navigation items; Group,
+        Collapse, Item. and Divider. These items can be mixed and matched to
+        create unique and complex navigation layouts.
       </Typography>
 
       <Typography className="mt-32 mb-8" variant="h6">
@@ -50,8 +51,8 @@ function FuseNavigationDoc(props) {
       </Typography>
 
       <Typography className="mb-16" component="p">
-        You can set <b>active</b> to "square" to use square active item style instead of
-        rounded/circle for <b>vertical layout</b>.
+        You can set <b>active</b> to "square" to use square active item style
+        instead of rounded/circle for <b>vertical layout</b>.
       </Typography>
 
       <Typography className="mt-32 mb-8" variant="h6">
@@ -59,7 +60,8 @@ function FuseNavigationDoc(props) {
       </Typography>
 
       <Typography className="mb-16" component="p">
-        You can use <b>{`dense={true}`}</b> to set dense variation of the navigation.
+        You can use <b>{`dense={true}`}</b> to set dense variation of the
+        navigation.
       </Typography>
 
       <Typography className="mt-32 mb-8" variant="h5">
@@ -144,7 +146,8 @@ function FuseNavigationDoc(props) {
         exact: bool
       </Typography>
       <Typography className="text-16 mb-8" component="h2">
-        When true, the active class/style will only be applied if the location is matched exactly.
+        When true, the active class/style will only be applied if the location
+        is matched exactly.
       </Typography>
       <FuseHighlight component="pre" className="language-json">
         {`
@@ -203,7 +206,8 @@ function FuseNavigationDoc(props) {
         setNavigation
       </Typography>
       <Typography className="text-16 mb-8" component="h2">
-        Use <code>setNavigation(navigation{'<Array>'})</code> action to set/change whole navigation.
+        Use <code>setNavigation(navigation{"<Array>"})</code> action to
+        set/change whole navigation.
       </Typography>
 
       <div className="border-1 rounded-16 p-16 my-16">
@@ -216,26 +220,26 @@ function FuseNavigationDoc(props) {
             dispatch(
               setNavigation([
                 {
-                  id: 'auth',
-                  title: 'Auth',
-                  type: 'group',
-                  icon: 'apps',
+                  id: "auth",
+                  title: "Auth",
+                  type: "group",
+                  icon: "apps",
                   children: [
                     {
-                      id: 'login',
-                      title: 'Login',
-                      type: 'item',
-                      url: '/login',
-                      auth: authRoles.onlyGuest,
-                      icon: 'lock',
+                      id: "login",
+                      title: "Login",
+                      type: "item",
+                      url: "/login",
+                      auth: authRoles.user,
+                      icon: "lock",
                     },
                     {
-                      id: 'register',
-                      title: 'Register',
-                      type: 'item',
-                      url: '/register',
-                      auth: authRoles.onlyGuest,
-                      icon: 'person_add',
+                      id: "register",
+                      title: "Register",
+                      type: "item",
+                      url: "/register",
+                      auth: authRoles.user,
+                      icon: "person_add",
                     },
                   ],
                 },
@@ -264,7 +268,7 @@ function FuseNavigationDoc(props) {
                                                         'title': 'Login',
                                                         'type' : 'item',
                                                         'url'  : '/login',
-                                                        auth   : authRoles.onlyGuest,
+                                                        auth   : authRoles.user,
                                                         'icon' : 'lock'
                                                     },
                                                     {
@@ -272,7 +276,7 @@ function FuseNavigationDoc(props) {
                                                         'title': 'Register',
                                                         'type' : 'item',
                                                         'url'  : '/register',
-                                                        auth   : authRoles.onlyGuest,
+                                                        auth   : authRoles.user,
                                                         'icon' : 'person_add'
                                                     },
                                                 ]
@@ -292,7 +296,8 @@ function FuseNavigationDoc(props) {
         resetNavigation
       </Typography>
       <Typography className="text-16 mb-8" component="h2">
-        Use <code>resetNavigation()</code> action to reset navigation to initial state.
+        Use <code>resetNavigation()</code> action to reset navigation to initial
+        state.
       </Typography>
 
       <div className="border-1 rounded-16 p-16 my-16">
@@ -338,18 +343,19 @@ function FuseNavigationDoc(props) {
 
       <div className="border-1 rounded-16 p-16 my-16">
         <Typography className="text-16 mb-24" component="h2">
-          With the button below, 'dashboards' title changes, and a badge is added.
+          With the button below, 'dashboards' title changes, and a badge is
+          added.
         </Typography>
 
         <Button
           onClick={() => {
             dispatch(
-              updateNavigationItem('dashboards', {
-                title: 'All Dashboards',
+              updateNavigationItem("dashboards", {
+                title: "All Dashboards",
                 badge: {
                   title: 2,
-                  bg: 'rgb(3, 155, 228)',
-                  fg: '#FFFFFF',
+                  bg: "rgb(3, 155, 228)",
+                  fg: "#FFFFFF",
                 },
               })
             );
@@ -388,7 +394,8 @@ function FuseNavigationDoc(props) {
         removeNavigationItem
       </Typography>
       <Typography className="text-16 mb-8" component="h2">
-        Use <code>removeNavigationItem(id)</code> action to remove a navigation item.
+        Use <code>removeNavigationItem(id)</code> action to remove a navigation
+        item.
       </Typography>
 
       <div className="border-1 rounded-16 p-16 my-16">
@@ -398,7 +405,7 @@ function FuseNavigationDoc(props) {
 
         <Button
           onClick={() => {
-            dispatch(removeNavigationItem('calendar'));
+            dispatch(removeNavigationItem("calendar"));
           }}
           variant="contained"
           color="primary"
@@ -434,8 +441,8 @@ function FuseNavigationDoc(props) {
 
       <div className="border-1 rounded-16 p-16 my-16">
         <Typography className="text-16 mb-24" component="h2">
-          With the button below, "fusetheme.com" navigation item is added at the top of the
-          navigation array.
+          With the button below, "fusetheme.com" navigation item is added at the
+          top of the navigation array.
         </Typography>
 
         <Button
@@ -443,11 +450,11 @@ function FuseNavigationDoc(props) {
             dispatch(
               prependNavigationItem({
                 id: `test-link-${FuseUtils.generateGUID()}`,
-                title: 'fusetheme.com',
-                type: 'link',
-                icon: 'link',
-                url: 'http://fusetheme.com',
-                target: '_blank',
+                title: "fusetheme.com",
+                type: "link",
+                icon: "link",
+                url: "http://fusetheme.com",
+                target: "_blank",
               })
             );
           }}
@@ -483,8 +490,8 @@ function FuseNavigationDoc(props) {
 
       <div className="border-1 rounded-16 p-16 my-16">
         <Typography className="text-16 mb-24" component="h2">
-          With the button below, "fusetheme.com" navigation item is added into the top of the
-          "Dashboards" children.
+          With the button below, "fusetheme.com" navigation item is added into
+          the top of the "Dashboards" children.
         </Typography>
 
         <Button
@@ -493,13 +500,13 @@ function FuseNavigationDoc(props) {
               prependNavigationItem(
                 {
                   id: `test-link-${FuseUtils.generateGUID()}`,
-                  title: 'fusetheme.com',
-                  type: 'link',
-                  icon: 'link',
-                  url: 'http://fusetheme.com',
-                  target: '_blank',
+                  title: "fusetheme.com",
+                  type: "link",
+                  icon: "link",
+                  url: "http://fusetheme.com",
+                  target: "_blank",
                 },
-                'dashboards'
+                "dashboards"
               )
             );
           }}
@@ -546,8 +553,8 @@ function FuseNavigationDoc(props) {
 
       <div className="border-1 rounded-16 p-16 my-16">
         <Typography className="text-16 mb-24" component="h2">
-          With the button below, "fusetheme.com" navigation item is added at the bottom of the
-          array.
+          With the button below, "fusetheme.com" navigation item is added at the
+          bottom of the array.
         </Typography>
 
         <Button
@@ -555,11 +562,11 @@ function FuseNavigationDoc(props) {
             dispatch(
               appendNavigationItem({
                 id: `test-link-${FuseUtils.generateGUID()}`,
-                title: 'fusetheme.com',
-                type: 'link',
-                icon: 'link',
-                url: 'http://fusetheme.com',
-                target: '_blank',
+                title: "fusetheme.com",
+                type: "link",
+                icon: "link",
+                url: "http://fusetheme.com",
+                target: "_blank",
               })
             );
           }}
@@ -594,8 +601,8 @@ function FuseNavigationDoc(props) {
 
       <div className="border-1 rounded-16 p-16 my-16">
         <Typography className="text-16 mb-24" component="h2">
-          With the button below, "fusetheme.com" navigation item is added into the bottom of the
-          "Dashboards" children.
+          With the button below, "fusetheme.com" navigation item is added into
+          the bottom of the "Dashboards" children.
         </Typography>
 
         <Button
@@ -604,13 +611,13 @@ function FuseNavigationDoc(props) {
               appendNavigationItem(
                 {
                   id: `test-link-${FuseUtils.generateGUID()}`,
-                  title: 'fusetheme.com',
-                  type: 'link',
-                  icon: 'link',
-                  url: 'http://fusetheme.com',
-                  target: '_blank',
+                  title: "fusetheme.com",
+                  type: "link",
+                  icon: "link",
+                  url: "http://fusetheme.com",
+                  target: "_blank",
                 },
-                'dashboards'
+                "dashboards"
               )
             );
           }}

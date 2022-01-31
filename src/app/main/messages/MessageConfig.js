@@ -23,7 +23,7 @@ const MessageConfig = {
       },
     },
   },
-  auth: authRoles.onlyGuest,
+  auth: authRoles.USER,
   routes: [
     {
       path: "/message",

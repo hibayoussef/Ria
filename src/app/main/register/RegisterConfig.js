@@ -1,5 +1,5 @@
-import { authRoles } from 'app/auth';
-import Register from './Register';
+import { authRoles } from "app/auth";
+import Register from "./Register";
 
 const RegisterConfig = {
   settings: {
@@ -23,10 +23,10 @@ const RegisterConfig = {
       },
     },
   },
-  auth: authRoles.onlyGuest,
+  auth: authRoles.USER,
   routes: [
     {
-      path: '/register',
+      path: "/register",
       component: Register,
     },
   ],
