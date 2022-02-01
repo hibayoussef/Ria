@@ -61,8 +61,8 @@ function Login() {
             >
               <div className="flex items-center mb-6">
                 <div
-                  justifyContent="flex-start"
-                  alignItems="flex-start"
+                  // justifyContent="flex-start"
+                  // alignItems="flex-start"
                   className="flex mb-32"
                 >
                   <div>
@@ -83,7 +83,7 @@ function Login() {
               </div>
             </motion.div>
 
-            {<JWTLoginTab />}
+            <JWTLoginTab />
           </CardContent>
 
           <div className="flex flex-col items-center justify-center pb-32">

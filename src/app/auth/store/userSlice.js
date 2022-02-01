@@ -31,61 +31,21 @@ export const setUserDataAuth0 = (tokenData) => async (dispatch) => {
   return dispatch(setUserData(user));
 };
 
-// export const setUserDataFirebase = (user, authUser) => async (dispatch) => {
-//   if (
-//     user &&
-//     user.data &&
-//     user.data.settings &&
-//     user.data.settings.theme &&
-//     user.data.settings.layout &&
-//     user.data.settings.layout.style
-//   ) {
-//     // Set user data but do not update
-//     return dispatch(setUserData(user));
-//   }
-
-//   // Create missing user settings
-//   return dispatch(createUserSettingsFirebase(authUser));
-// };
-
-// export const createUserSettingsFirebase = (authUser) => async (dispatch, getState) => {
-//   const guestUser = getState().auth.user;
-//   const fuseDefaultSettings = getState().fuse.settings.defaults;
-//   const { currentUser } = firebase.auth();
-
-//   /**
-//    * Merge with current Settings
-//    */
-//   const user = _.merge({}, guestUser, {
-//     uid: authUser.uid,
-//     from: 'firebase',
-//     role: ['admin'],
-//     data: {
-//       displayName: authUser.displayName,
-//       email: authUser.email,
-//       settings: { ...fuseDefaultSettings },
-//     },
-//   });
-//   currentUser.updateProfile(user.data);
-
-//   dispatch(updateUserData(user));
-
-//   return dispatch(setUserData(user));
-// };
-
 export const setUserData = (user) => async (dispatch, getState) => {
   /*
         You can redirect the logged-in user to a specific route depending on his role
          */
-
+  console.log("6-user-sice I am in user data file");
+  console.log("7-user-slice user inside userSlice: ", user);
   history.location.state = {
     redirectUrl: user.redirectUrl, // for example 'apps/academy'
   };
 
+  // console.log("redirect to new page: ", redirectUrl);
   /*
     Set User Settings
      */
-  dispatch(setDefaultSettings(user.data.settings));
+  // dispatch(setDefaultSettings(user.data.settings));
 
   dispatch(setUser(user));
 };
@@ -128,14 +88,6 @@ export const logoutUser = () => async (dispatch, getState) => {
   });
 
   switch (user.from) {
-    // case 'firebase': {
-    //   firebaseService.signOut();
-    //   break;
-    // }
-    // case "auth0": {
-    //   auth0Service.logout();
-    //   break;
-    // }
     default: {
       jwtService.logout();
     }
@@ -152,31 +104,6 @@ export const updateUserData = (user) => async (dispatch, getState) => {
     return;
   }
   switch (user.from) {
-    // case 'firebase': {
-    //   firebaseService
-    //     .updateUserData(user)
-    //     .then(() => {
-    //       dispatch(showMessage({ message: 'User data saved to firebase' }));
-    //     })
-    //     .catch((error) => {
-    //       dispatch(showMessage({ message: error.message }));
-    //     });
-    //   break;
-    // }
-    // case "auth0": {
-    //   auth0Service
-    //     .updateUserData({
-    //       settings: user.data.settings,
-    //       shortcuts: user.data.shortcuts,
-    //     })
-    //     .then(() => {
-    //       dispatch(showMessage({ message: "User data saved to auth0" }));
-    //     })
-    //     .catch((error) => {
-    //       dispatch(showMessage({ message: error.message }));
-    //     });
-    //   break;
-    // }
     default: {
       jwtService
         .updateUserData(user)

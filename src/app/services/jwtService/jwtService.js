@@ -73,18 +73,68 @@ class JwtService extends FuseUtils.EventEmitter {
   };
 
   signInWithEmailAndPassword = (email, password) => {
+    console.log("email and password: ", email, ",", password);
     return new Promise((resolve, reject) => {
       axios
-        .get("/api/auth", {
-          data: {
-            email,
-            password,
-          },
+        .post("auth/login", {
+          email,
+          password,
         })
         .then((response) => {
-          if (response.data.user) {
-            this.setSession(response.data.access_token);
-            resolve(response.data.user);
+          if (response.data.data) {
+            const res = response.data.data;
+            console.log("3-JWTService ", res);
+            // format user so we save dashboard user dto ##note
+            const user = {
+              uuid: "XgbuVEXBU5gtSKdbQRP1Zbbby1i1",
+              from: "api",
+              role: "admin", // res.roles[0] || "staff ", /// ##note you must handle the roles in the whole system and replace them with yours,
+              data: {
+                displayName: `${res.firstName} ${res.lastName}`,
+                photoURL: "assets/images/avatars/Abbott.jpg",
+                email: res.email,
+                settings: {
+                  layout: {
+                    style: "layout1",
+                    config: {
+                      scroll: "content",
+                      navbar: {
+                        display: true,
+                        folded: true,
+                        position: "left",
+                      },
+                      toolbar: {
+                        display: true,
+                        style: "fixed",
+                        position: "below",
+                      },
+                      footer: {
+                        display: true,
+                        style: "fixed",
+                        position: "below",
+                      },
+                      mode: "fullwidth",
+                    },
+                  },
+                  customScrollbars: true,
+                  theme: {
+                    main: "defaultDark",
+                    navbar: "defaultDark",
+                    toolbar: "defaultDark",
+                    footer: "defaultDark",
+                  },
+                },
+                shortcuts: ["calendar", "mail", "contacts"],
+              },
+            };
+
+            this.setSession(response.data.data.access_token);
+            console.log(
+              "4-response.data.data.access_token inside jwtService: ",
+              response.data.data.access_token
+            );
+            console.log("user inside jwtService: ", user);
+            resolve(user);
           } else {
             reject(response.data.error);
           }
@@ -124,6 +174,7 @@ class JwtService extends FuseUtils.EventEmitter {
 
   setSession = (access_token) => {
     if (access_token) {
+      console.log("access_token inside jwtService: ", access_token);
       localStorage.setItem("jwt_access_token", access_token);
       axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
     } else {

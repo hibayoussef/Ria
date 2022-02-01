@@ -4,7 +4,6 @@ import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import Typography from "@material-ui/core/Typography";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +18,7 @@ const schema = yup.object().shape({
   email: yup
     .string()
     .email("You must enter a valid email")
-    .required("You must enter a email"),
+    .required("You must enter an email"),
   password: yup
     .string()
     .required("Please enter your password.")
@@ -53,7 +52,7 @@ function JWTLoginTab(props) {
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
-    setValue("email", "admin@fusetheme.com", {
+    setValue("email", "ria@ria.com", {
       shouldDirty: true,
       shouldValidate: true,
     });
@@ -61,7 +60,7 @@ function JWTLoginTab(props) {
   }, [reset, setValue, trigger]);
 
   useEffect(() => {
-    login.errors.forEach((error) => {
+    login?.errors?.forEach((error) => {
       setError(error.type, {
         type: "manual",
         message: error.message,
@@ -71,6 +70,7 @@ function JWTLoginTab(props) {
 
   function onSubmit(model) {
     dispatch(submitLogin(model));
+    console.log("2-JWTLoginTab: ", model);
   }
 
   return (
@@ -140,7 +140,7 @@ function JWTLoginTab(props) {
           color="primary"
           className="w-full mx-auto mt-16"
           aria-label="LOG IN"
-          // disabled={_.isEmpty(dirtyFields) || !isValid}
+          disabled={_.isEmpty(dirtyFields) || !isValid}
           value="legacy"
         >
           Login
