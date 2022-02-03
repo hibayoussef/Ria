@@ -58,11 +58,7 @@ function Register() {
               animate={{ opacity: 1, transition: { delay: 0.2 } }}
             >
               <div className="flex items-center mb-6">
-                <div
-                  justifyContent="flex-start"
-                  alignItems="flex-start"
-                  className="flex mb-32"
-                >
+                <div className="flex mb-32">
                   <div>
                     <Typography
                       className="text-20 font-semibold logo-text"

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { showMessage } from "app/store/fuse/messageSlice";
 import jwtService from "app/services/jwtService";
 import { setUserData } from "./userSlice";
 
@@ -7,90 +6,19 @@ export const submitRegister =
   ({ firstName, lastName, email, phoneNumber, password }) =>
   async (dispatch) => {
     return jwtService
-      .createUser({
-        firstName,
-        lastName,
-        email,
-        phoneNumber,
-        password,
-      })
+      .createUser({ firstName, lastName, email, phoneNumber, password })
       .then((user) => {
+        console.log("then: ", user);
         // in Redux
         dispatch(setUserData(user));
+
+        console.log("navigate: ", user.data.data.status);
         return dispatch(registerSuccess());
       })
       .catch((errors) => {
         return dispatch(registerError(errors));
       });
   };
-
-// export const registerWithFirebase = (model) => async (dispatch) => {
-//   if (!firebaseService.auth) {
-//     console.warn(
-//       "Firebase Service didn't initialize, check your configuration"
-//     );
-
-//     return () => false;
-//   }
-//   const { email, password, displayName } = model;
-
-//   return firebaseService.auth
-//     .createUserWithEmailAndPassword(email, password)
-//     .then((response) => {
-//       dispatch(
-//         createUserSettingsFirebase({
-//           ...response.user,
-//           displayName,
-//           email,
-//         })
-//       );
-
-//       return dispatch(registerSuccess());
-//     })
-//     .catch((error) => {
-//       const usernameErrorCodes = [
-//         "auth/operation-not-allowed",
-//         "auth/user-not-found",
-//         "auth/user-disabled",
-//       ];
-
-//       const emailErrorCodes = [
-//         "auth/email-already-in-use",
-//         "auth/invalid-email",
-//       ];
-
-//       const passwordErrorCodes = ["auth/weak-password", "auth/wrong-password"];
-
-//       const response = [];
-
-//       if (usernameErrorCodes.includes(error.code)) {
-//         response.push({
-//           type: "username",
-//           message: error.message,
-//         });
-//       }
-
-//       if (emailErrorCodes.includes(error.code)) {
-//         response.push({
-//           type: "email",
-//           message: error.message,
-//         });
-//       }
-
-//       if (passwordErrorCodes.includes(error.code)) {
-//         response.push({
-//           type: "password",
-//           message: error.message,
-//         });
-//       }
-
-//       if (error.code === "auth/invalid-api-key") {
-//         dispatch(showMessage({ message: error.message }));
-//       }
-
-//       return dispatch(registerError(response));
-//     });
-// };
 
 // those will be appears in Redux
 const initialState = {

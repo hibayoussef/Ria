@@ -34,18 +34,14 @@ export const setUserDataAuth0 = (tokenData) => async (dispatch) => {
 export const setUserData = (user) => async (dispatch, getState) => {
   /*
         You can redirect the logged-in user to a specific route depending on his role
-         */
-  console.log("6-user-sice I am in user data file");
-  console.log("7-user-slice user inside userSlice: ", user);
+  //        */
   history.location.state = {
-    redirectUrl: user.redirectUrl, // for example 'apps/academy'
+    pathname: "/message",
   };
 
-  // console.log("redirect to new page: ", redirectUrl);
-  /*
-    Set User Settings
-     */
-  // dispatch(setDefaultSettings(user.data.settings));
+  // history.push({
+
+  // });
 
   dispatch(setUser(user));
 };

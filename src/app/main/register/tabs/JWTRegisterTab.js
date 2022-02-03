@@ -47,19 +47,11 @@ function JWTRegisterTab(props) {
 
   const { isValid, dirtyFields, errors } = formState;
 
-  useEffect(() => {
-    authRegister.errors.forEach((error) => {
-      setError(error.type, {
-        type: "manual",
-        message: error.message,
-      });
-    });
-  }, [authRegister.errors, setError]);
-
   function onSubmit(model) {
+    console.log("submit ", model);
+
     dispatch(submitRegister(model));
   }
-
   return (
     <div className="w-full">
       <form
@@ -201,7 +193,7 @@ function JWTRegisterTab(props) {
           color="primary"
           className="w-full mx-auto mt-16"
           aria-label="REGISTER"
-          // disabled={_.isEmpty(dirtyFields) || !isValid}
+          disabled={_.isEmpty(dirtyFields) || !isValid}
           value="legacy"
         >
           Register
