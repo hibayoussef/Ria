@@ -69,13 +69,18 @@ const EnhancedTable = ({ columns, data, onRowClick }) => {
       boxShadow={3}
       borderColor="red"
       style={{
-        color: "red",
-        backgroundColor: "#ffffff",
+        padding: "2rem",
       }}
       className="flex flex-col min-h-full sm:rounded-16 overflow-hidden"
+      borderRadius={20}
     >
-      <TableContainer borderRadius={16} className="flex flex-1">
-        <Table {...getTableProps()} aria-label="a dense table">
+      <TableContainer borderRadius={20} className="flex flex-1">
+        <Table
+          style={{ border: "solid 1px #e8e4e4", borderRadius: 15 }}
+          {...getTableProps()}
+          aria-label="a dense table"
+          // className="ml-10 mr-10 pl-10"
+        >
           <TableHead>
             {headerGroups.map((headerGroup) => (
               <TableRow {...headerGroup.getHeaderGroupProps()}>

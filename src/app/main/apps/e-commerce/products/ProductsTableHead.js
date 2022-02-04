@@ -1,63 +1,63 @@
-import Checkbox from '@material-ui/core/Checkbox';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
-import { makeStyles } from '@material-ui/core/styles';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Tooltip from '@material-ui/core/Tooltip';
-import clsx from 'clsx';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { removeProducts } from '../store/productsSlice';
+import Checkbox from "@material-ui/core/Checkbox";
+import Icon from "@material-ui/core/Icon";
+import IconButton from "@material-ui/core/IconButton";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import MenuList from "@material-ui/core/MenuList";
+import { makeStyles } from "@material-ui/core/styles";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TableSortLabel from "@material-ui/core/TableSortLabel";
+import Tooltip from "@material-ui/core/Tooltip";
+import clsx from "clsx";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { removeProducts } from "../store/productsSlice";
 
 const rows = [
   {
-    id: 'image',
-    align: 'left',
+    id: "image",
+    align: "left",
     disablePadding: true,
-    label: '',
+    label: "",
     sort: false,
   },
   {
-    id: 'name',
-    align: 'left',
+    id: "name",
+    align: "left",
     disablePadding: false,
-    label: 'Name',
+    label: "Name",
     sort: true,
   },
   {
-    id: 'categories',
-    align: 'left',
+    id: "categories",
+    align: "left",
     disablePadding: false,
-    label: 'Category',
+    label: "Category",
     sort: true,
   },
   {
-    id: 'priceTaxIncl',
-    align: 'right',
+    id: "priceTaxIncl",
+    align: "right",
     disablePadding: false,
-    label: 'Price',
+    label: "Price",
     sort: true,
   },
   {
-    id: 'quantity',
-    align: 'right',
+    id: "quantity",
+    align: "right",
     disablePadding: false,
-    label: 'Quantity',
+    label: "Quantity",
     sort: true,
   },
   {
-    id: 'active',
-    align: 'right',
+    id: "active",
+    align: "right",
     disablePadding: false,
-    label: 'Active',
+    label: "Active",
     sort: true,
   },
 ];
@@ -101,12 +101,12 @@ function ProductsTableHead(props) {
           {numSelected > 0 && (
             <div
               className={clsx(
-                'flex items-center justify-center absolute w-64 top-0 ltr:left-0 rtl:right-0 mx-56 h-64 z-10 border-b-1',
+                "flex items-center justify-center absolute w-64 top-0 ltr:left-0 rtl:right-0 mx-56 h-64 z-10 border-b-1",
                 classes.actionsButtonWrapper
               )}
             >
               <IconButton
-                aria-owns={selectedProductsMenu ? 'selectedProductsMenu' : null}
+                aria-owns={selectedProductsMenu ? "selectedProductsMenu" : null}
                 aria-haspopup="true"
                 onClick={openSelectedProductsMenu}
               >
@@ -142,13 +142,17 @@ function ProductsTableHead(props) {
               className="p-4 md:p-16"
               key={row.id}
               align={row.align}
-              padding={row.disablePadding ? 'none' : 'normal'}
-              sortDirection={props.order.id === row.id ? props.order.direction : false}
+              padding={row.disablePadding ? "none" : "normal"}
+              sortDirection={
+                props.order.id === row.id ? props.order.direction : false
+              }
             >
               {row.sort && (
                 <Tooltip
                   title="Sort"
-                  placement={row.align === 'right' ? 'bottom-end' : 'bottom-start'}
+                  placement={
+                    row.align === "right" ? "bottom-end" : "bottom-start"
+                  }
                   enterDelay={300}
                 >
                   <TableSortLabel

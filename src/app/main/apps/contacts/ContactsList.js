@@ -46,6 +46,7 @@ function ContactsList(props) {
               className="mx-8"
               alt={row.original.name}
               src={row.original.avatar}
+              style={{ height: "7rem", width: "7rem" }}
             />
           );
         },
@@ -77,24 +78,43 @@ function ContactsList(props) {
       },
       {
         Header: "",
-        accessor: "phone",
+        accessor: "",
         sortable: true,
         id: "action",
-        width: 128,
+        // width: 100,
         sortable: false,
         Cell: ({ row }) => (
           <div className="flex items-center">
-            <ButtonGroup
+            {/* <ButtonGroup
               color="primary"
               aria-label="outlined primary button group"
+            > */}
+            <Button
+              style={{
+                color: "#f8f4fc",
+                backgroundColor: "#282c3c",
+                maxWidth: "110px",
+                maxHeight: "40px",
+                minWidth: "110px",
+                minHeight: "40px",
+                marginRight: 10,
+              }}
             >
-              <Button style={{ color: "#f8f4fc", backgroundColor: "#282c3c" }}>
-                Confirmation
-              </Button>
-              <Button style={{ color: "#f8f4fc", backgroundColor: "#282c3c" }}>
-                reject
-              </Button>
-            </ButtonGroup>
+              approve
+            </Button>
+            <Button
+              style={{
+                color: "#f8f4fc",
+                backgroundColor: "#282c3c",
+                maxWidth: "110px",
+                maxHeight: "40px",
+                minWidth: "110px",
+                minHeight: "40px",
+              }}
+            >
+              reject
+            </Button>
+            {/* </ButtonGroup> */}
 
             {/* <IconButton
               onClick={(ev) => {

@@ -1,13 +1,13 @@
-import AppBar from '@material-ui/core/AppBar';
-import { ThemeProvider } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import PoweredByLinks from 'app/fuse-layouts/shared-components/PoweredByLinks';
-import PurchaseButton from 'app/fuse-layouts/shared-components/PurchaseButton';
-import DocumentationButton from 'app/fuse-layouts/shared-components/DocumentationButton';
-import { memo } from 'react';
-import { useSelector } from 'react-redux';
-import { selectFooterTheme } from 'app/store/fuse/settingsSlice';
-import clsx from 'clsx';
+import AppBar from "@material-ui/core/AppBar";
+import { ThemeProvider } from "@material-ui/core/styles";
+import Toolbar from "@material-ui/core/Toolbar";
+import PoweredByLinks from "app/fuse-layouts/shared-components/PoweredByLinks";
+import PurchaseButton from "app/fuse-layouts/shared-components/PurchaseButton";
+import DocumentationButton from "app/fuse-layouts/shared-components/DocumentationButton";
+import { memo } from "react";
+import { useSelector } from "react-redux";
+import { selectFooterTheme } from "app/store/fuse/settingsSlice";
+import clsx from "clsx";
 
 function FooterLayout1(props) {
   const footerTheme = useSelector(selectFooterTheme);
@@ -16,7 +16,7 @@ function FooterLayout1(props) {
     <ThemeProvider theme={footerTheme}>
       <AppBar
         id="fuse-footer"
-        className={clsx('relative z-20 shadow-md', props.className)}
+        className={clsx("relative z-20 shadow-md", props.className)}
         color="default"
         style={{ backgroundColor: footerTheme.palette.background.paper }}
       >

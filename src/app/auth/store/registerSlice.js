@@ -1,14 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import jwtService from "app/services/jwtService";
 import { setUserData } from "./userSlice";
+import { useHistory } from "react-router-dom";
 
 export const submitRegister =
   ({ firstName, lastName, email, phoneNumber, password }) =>
   async (dispatch) => {
+    const history = useHistory();
     return jwtService
       .createUser({ firstName, lastName, email, phoneNumber, password })
       .then((user) => {
         console.log("then: ", user);
+
         // in Redux
         dispatch(setUserData(user));
 
