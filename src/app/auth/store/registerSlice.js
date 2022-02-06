@@ -12,6 +12,7 @@ export const submitRegister =
         console.log("then: ", user);
 
         // in Redux
+        alert(1);
         dispatch(setUserData(user));
 
         return dispatch(registerSuccess());

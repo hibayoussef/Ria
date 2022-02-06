@@ -47,54 +47,34 @@ class JwtService extends FuseUtils.EventEmitter {
     // }
   };
 
-  createUser = async ({
-    firstName,
-    lastName,
-    email,
-    phoneNumber,
-    password,
-  }) => {
+  createUser = ({ firstName, lastName, email, phoneNumber, password }) => {
     console.log("create User...");
-    const response = await axios.post("auth/sign-up", {
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      password,
-    });
-    console.log("response axios: ", response);
-    if (response.data.data) {
-      this.setSession(response.data.data.access_token);
-      resolve(response.data.data);
-      console.log(
-        "inside jwtService ===> createUser Response Data: ",
-        response.data
-      );
-    } else {
-      reject(response.data.error);
-    }
-  };
+    return new Promise((resolve, reject) => {
+      axios
+        .post("auth/sign-up", {
+          firstName,
+          lastName,
+          email,
+          phoneNumber,
+          password,
+        })
+        .then((response) => {
+          console.log("response axios: ", response);
+          if (response.data.data) {
+            this.setSession(response.data.data.access_token);
 
-  // createUser = (firstName, lastName, email, phoneNumber, password) => {
-  //   return new Promise((resolve, reject) => {
-  //     axios
-  //       .post("auth/sign-up", {
-  //         firstName,
-  //         lastName,
-  //         email,
-  //         phoneNumber,
-  //         password,
-  //       })
-  //       .then((response) => {
-  //         if (response.data.user) {
-  //           this.setSession(response.data.access_token);
-  //           resolve(response.data.user);
-  //         } else {
-  //           reject(response.data.error);
-  //         }
-  //       });
-  //   });
-  // };
+            this.setSession(response.data.data.accessToken);
+            resolve(response.data.data);
+            console.log(
+              "inside jwtService ===> createUser Response Data: ",
+              response.data
+            );
+          } else {
+            reject(response.data.error);
+          }
+        });
+    });
+  };
 
   signInWithEmailAndPassword = (email, password) => {
     return new Promise((resolve, reject) => {

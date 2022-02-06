@@ -39,6 +39,10 @@ export const setUserData = (user) => async (dispatch, getState) => {
     redirectUrl: user.redirectUrl,
   };
 
+  history.push({
+    pathname: "/message",
+  });
+
   dispatch(setUser(user));
 };
 

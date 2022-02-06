@@ -60,7 +60,7 @@ function Message() {
 
               <Typography className="text-center w-full" color="textSecondary">
                 After the registration request is approved, go to{" "}
-                <Link className="font-normal" to="/pages/auth/login">
+                <Link className="font-normal" to="/login">
                   login
                 </Link>{" "}
                 page.
@@ -70,7 +70,7 @@ function Message() {
               </Typography>
 
               <div className="flex flex-col items-center justify-center pt-28 pb-24">
-                <Link className="font-normal" to="/pages/auth/login">
+                <Link className="font-normal" to="/register">
                   Go back to Signup
                 </Link>
               </div>
