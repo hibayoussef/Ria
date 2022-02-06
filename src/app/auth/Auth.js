@@ -31,13 +31,14 @@ class Auth extends Component {
          * Sign in and retrieve user data from Api
          */
         jwtService
-          .signInWithToken()
+          // .signInWithToken()
+          .getUserData()
           .then((user) => {
             this.props.setUserData(user);
 
             resolve();
 
-            this.props.showMessage({ message: "Logged in with JWT" });
+            // this.props.showMessage({ message: "Logged in with JWT" });
           })
           .catch((error) => {
             this.props.showMessage({ message: error.message });
@@ -65,34 +66,6 @@ class Auth extends Component {
       return Promise.resolve();
     });
 
-  // auth0Check = () =>
-  //   new Promise((resolve) => {
-  //     auth0Service.init((success) => {
-  //       if (!success) {
-  //         resolve();
-  //       }
-  //     });
-
-  //     if (auth0Service.isAuthenticated()) {
-  //       this.props.showMessage({ message: "Logging in with Auth0" });
-
-  //       /**
-  //        * Retrieve user data from Auth0
-  //        */
-  //       auth0Service.getUserData().then((tokenData) => {
-  //         this.props.setUserDataAuth0(tokenData);
-
-  //         resolve();
-
-  //         this.props.showMessage({ message: "Logged in with Auth0" });
-  //       });
-  //     } else {
-  //       resolve();
-  //     }
-
-  //     return Promise.resolve();
-  //   });
-
   render() {
     return this.state.waitAuthCheck ? (
       <FuseSplashScreen />
@@ -107,7 +80,7 @@ function mapDispatchToProps(dispatch) {
     {
       logout: logoutUser,
       setUserData,
-      // setUserDataAuth0,
+      setUserDataAuth0,
       showMessage,
       hideMessage,
     },

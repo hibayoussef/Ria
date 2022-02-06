@@ -56,7 +56,10 @@ function JWTLoginTab(props) {
       shouldDirty: true,
       shouldValidate: true,
     });
-    setValue("password", "admin", { shouldDirty: true, shouldValidate: true });
+    setValue("password", "ria@123", {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
   }, [reset, setValue, trigger]);
 
   useEffect(() => {

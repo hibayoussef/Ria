@@ -66,19 +66,17 @@ const EnhancedTable = ({ columns, data, onRowClick }) => {
   // Render the UI for your table
   return (
     <div
-      boxShadow={3}
-      borderColor="red"
       style={{
         padding: "2rem",
+        border: "solid 1px #e8e4e4",
       }}
       className="flex flex-col min-h-full sm:rounded-16 overflow-hidden"
       borderRadius={20}
     >
-      <TableContainer borderRadius={20} className="flex flex-1">
+      <TableContainer boxShadow={20} className="flex flex-1">
         <Table
-          style={{ border: "solid 1px #e8e4e4", borderRadius: 15 }}
           {...getTableProps()}
-          aria-label="a dense table"
+          boxShadow={10}
           // className="ml-10 mr-10 pl-10"
         >
           <TableHead>

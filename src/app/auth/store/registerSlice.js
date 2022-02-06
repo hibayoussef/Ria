@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 export const submitRegister =
   ({ firstName, lastName, email, phoneNumber, password }) =>
   async (dispatch) => {
-    const history = useHistory();
     return jwtService
       .createUser({ firstName, lastName, email, phoneNumber, password })
       .then((user) => {
@@ -15,7 +14,6 @@ export const submitRegister =
         // in Redux
         dispatch(setUserData(user));
 
-        console.log("navigate: ", user.data.data.status);
         return dispatch(registerSuccess());
       })
       .catch((errors) => {

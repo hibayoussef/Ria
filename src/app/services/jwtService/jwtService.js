@@ -39,14 +39,12 @@ class JwtService extends FuseUtils.EventEmitter {
 
       return;
     }
-
-    if (this.isAuthTokenValid(access_token)) {
-      this.setSession(access_token);
-      this.emit("onAutoLogin", true);
-    } else {
-      this.setSession(null);
-      this.emit("onAutoLogout", "access_token expired");
-    }
+    this.setSession(access_token);
+    this.emit("onAutoLogin", true);
+    // } else {
+    //   this.setSession(null);
+    //   this.emit("onAutoLogout", "access_token expired");
+    // }
   };
 
   createUser = async ({
@@ -77,8 +75,28 @@ class JwtService extends FuseUtils.EventEmitter {
     }
   };
 
+  // createUser = (firstName, lastName, email, phoneNumber, password) => {
+  //   return new Promise((resolve, reject) => {
+  //     axios
+  //       .post("auth/sign-up", {
+  //         firstName,
+  //         lastName,
+  //         email,
+  //         phoneNumber,
+  //         password,
+  //       })
+  //       .then((response) => {
+  //         if (response.data.user) {
+  //           this.setSession(response.data.access_token);
+  //           resolve(response.data.user);
+  //         } else {
+  //           reject(response.data.error);
+  //         }
+  //       });
+  //   });
+  // };
+
   signInWithEmailAndPassword = (email, password) => {
-    console.log("email and password: ", email, ",", password);
     return new Promise((resolve, reject) => {
       axios
         .post("auth/login", {
@@ -88,11 +106,20 @@ class JwtService extends FuseUtils.EventEmitter {
         .then((response) => {
           if (response.data.data) {
             const res = response.data.data;
-            console.log("3-JWTService ", res);
             // format user so we save dashboard user dto ##note
+            const user = {
+              uuid: "XgbuVEXBU5gtSKdbQRP1Zbbby1i1",
+              from: "api",
+              role: res.roles[0], // res.roles[0] || "staff ", /// ##note you must handle the roles in the whole system and replace them with yours,
+              data: {
+                displayName: `${res.firstName} ${res.lastName}`,
+                photoURL: "assets/images/avatars/Abbott.jpg",
+                email: res.email,
+              },
+            };
 
             this.setSession(response.data.data.accessToken);
-            resolve(response.data.data);
+            resolve(user);
           } else {
             reject(response.data.error);
           }
@@ -124,6 +151,43 @@ class JwtService extends FuseUtils.EventEmitter {
     });
   };
 
+  getUserData = () => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get("user/me", {
+          data: {
+            access_token: this.getAccessToken(),
+          },
+        })
+        .then((response) => {
+          if (response.data.data) {
+            const res = response.data.data;
+            const user = {
+              uuid: "XgbuVEXBU5gtSKdbQRP1Zbbby1i1",
+              from: "api",
+              role: res.roles[0],
+              data: {
+                displayName: `${res.firstName} ${res.lastName}`,
+                photoURL: "assets/images/avatars/Abbott.jpg",
+                email: res.email,
+              },
+            };
+            if (response.data.data.accessToken)
+              this.setSession(response.data.data.accessToken);
+            resolve(user);
+            resolve(response.data.user);
+          } else {
+            this.logout();
+            reject(new Error("Failed to login with token."));
+          }
+        })
+        .catch((error) => {
+          this.logout();
+          reject(new Error("Failed to login with token."));
+        });
+    });
+  };
+
   updateUserData = (user) => {
     return axios.post("/api/auth/user/update", {
       user,
@@ -132,10 +196,10 @@ class JwtService extends FuseUtils.EventEmitter {
 
   setSession = (access_token) => {
     if (access_token) {
-      localStorage.setItem("jwt_access_token", access_token);
+      localStorage.setItem("accessToken", access_token);
       axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
     } else {
-      localStorage.removeItem("jwt_access_token");
+      localStorage.removeItem("accessToken");
       delete axios.defaults.headers.common.Authorization;
     }
   };
@@ -159,7 +223,7 @@ class JwtService extends FuseUtils.EventEmitter {
   };
 
   getAccessToken = () => {
-    return window.localStorage.getItem("jwt_access_token");
+    return window.localStorage.getItem("accessToken");
   };
 }
 

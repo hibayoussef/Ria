@@ -10,6 +10,8 @@ import { useMemo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ContactsMultiSelectMenu from "./ContactsMultiSelectMenu";
 import ContactsTable from "./ContactsTable";
+import { makeStyles } from "@material-ui/core/styles";
+
 import {
   openEditContactDialog,
   removeContact,
@@ -17,7 +19,29 @@ import {
   selectContacts,
 } from "./store/contactsSlice";
 
+const useStyles = makeStyles({
+  button1: {
+    backgroundColor: "none",
+    "&:hover": {
+      backgroundColor: "#43a047",
+      color: "#e8e4e4",
+      transition: "0.3s",
+      borderColor: "#43a047",
+    },
+  },
+  button2: {
+    backgroundColor: "none",
+    "&:hover": {
+      backgroundColor: "#e53935",
+      color: "#e8e4e4",
+      transition: "0.3s",
+      borderColor: "#e53935",
+    },
+  },
+});
+
 function ContactsList(props) {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const searchText = useSelector(
@@ -88,33 +112,59 @@ function ContactsList(props) {
             {/* <ButtonGroup
               color="primary"
               aria-label="outlined primary button group"
-            > */}
-            <Button
-              style={{
-                color: "#f8f4fc",
-                backgroundColor: "#282c3c",
-                maxWidth: "110px",
-                maxHeight: "40px",
-                minWidth: "110px",
-                minHeight: "40px",
-                marginRight: 10,
-              }}
             >
-              approve
-            </Button>
-            <Button
+              
+
+              <Divider
+                orientation="vertical"
+                flexItem
+                style={{ backgroundColor: "red" }}
+              />
+
+              
+            </ButtonGroup> */}
+
+            <ButtonGroup
               style={{
-                color: "#f8f4fc",
-                backgroundColor: "#282c3c",
-                maxWidth: "110px",
+                // color: "#f8f4fc",
+                // backgroundColor: "#282c3c",
+                maxWidth: "206px",
                 maxHeight: "40px",
-                minWidth: "110px",
+                minWidth: "206px",
                 minHeight: "40px",
+                // marginRight: 10,
               }}
+              aria-label="outlined primary button group"
             >
-              reject
-            </Button>
-            {/* </ButtonGroup> */}
+              <Button
+                style={{
+                  // color: "#f8f4fc",
+                  // backgroundColor: "#282c3c",
+                  maxWidth: "100px",
+                  // maxHeight: "40px",
+                  minWidth: "100px",
+                  // minHeight: "40px",
+                  // marginRight: 10,
+                }}
+                className={classes.button1}
+              >
+                approve
+              </Button>
+              <Button
+                style={{
+                  // color: "#f8f4fc",
+                  // backgroundColor: "#282c3c",
+                  maxWidth: "100px",
+                  // maxHeight: "40px",
+                  minWidth: "100px",
+                  // minHeight: "40px",
+                  // marginRight: 10,
+                }}
+                className={classes.button2}
+              >
+                reject
+              </Button>
+            </ButtonGroup>
 
             {/* <IconButton
               onClick={(ev) => {
